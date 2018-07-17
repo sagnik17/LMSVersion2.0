@@ -1,0 +1,85 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<table style="width:200%" border="0">
+  <tr>
+    <td>
+      <div class="col-md-10 col-md-offset-3">
+        
+         <h3>User Registration</h3>
+        
+         <form (ngSubmit)="checkDuplicate(RegForm)" #RegForm="ngForm" >
+     
+           <div class="form-group">
+             <input type="hidden" id="id" name="id" [(ngModel)]="model.id">
+             <label for="title">First Name</label>
+             <input type="text" class="form-control" id="name" name="firstName" required 
+               [(ngModel)]="model.firstName" #firstName="ngModel">
+             <div *ngIf = "firstName.errors && (firstName.dirty || firstName.touched)" class="text-danger">
+                 <div [hidden]="!firstName.errors.required">
+                     Firstname is required.
+                 </div>
+               </div>
+           </div>
+           <div class="form-group">
+               <label for="lname">Last Name</label>
+               <input type="text" class="form-control" id="lname" required [(ngModel)]="model.lastName" 
+               name="lastName" #lastName="ngModel">
+               <div *ngIf = "lastName.errors && (lastName.dirty || lastName.touched)" class="text-danger">
+                   <div [hidden]="!lastName.errors.required">
+                       Lastname is required.
+                   </div>
+                 </div>
+             </div>
+             <div class="form-group">
+                 <label for="Username">User name</label>
+                 <input type="text" class="form-control" id="username" minlength="5" [(ngModel)]="model.username" name="username" #username="ngModel" required>
+                 <div *ngIf = "username.errors && (username.dirty || username.touched)" class="text-danger">
+                   <div [hidden]="!username.errors.required">
+                     Username is required.
+                   </div>
+                   <div [hidden]="!username.errors.minlength">
+                     Username must be atleast 5 Characters long
+                   </div>
+                 </div>
+             </div>
+             <div class="form-group">
+                 <label for="Password">Password</label>
+                 <input type="password" class="form-control" id="password" minlength="6" [(ngModel)]="model.password" name="password" #password="ngModel" required>
+                 <div *ngIf = "password.errors && (password.dirty || password.touched)" class="text-danger">
+                     <div [hidden]="!password.errors.required">
+                       Password is required.
+                     </div>
+                     <div [hidden]="!password.errors.minlength">
+                       Password must be atleast 6 Characters long
+                     </div>
+                   </div>
+             </div>
+             <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" minlength="10" [(ngModel)]="model.email" name="email" #email="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                <div *ngIf = "email.errors && (email.dirty || email.touched) " class="text-danger">
+                  <div [hidden]="!email.errors.required">
+                      Email is required.
+                  </div>
+                  <div [hidden]="!email.errors.pattern">
+                      Email not in correct format
+                  </div>
+                </div>
+            </div>
+             <div class="form-group">
+                 <button type="submit" [disabled]="!RegForm.form.valid" class="btn btn-primary">Register</button>
+                 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                 <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+             </div>
+         </form>
+       
+       </div>
+    </td>
+    <td>
+      <img src="../../assets/reg.jpg" height="300px" width="450px"/>
+    </td>
+  </tr>
+</table>
+
+  
+  
+  

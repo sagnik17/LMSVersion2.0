@@ -1,0 +1,94 @@
+<div class="container" style="width: 1200px;">
+  <h3>User Profile</h3>
+<table class="table table-striped table-hover table-bordered" style="width:120%" border="0">
+    <tr>
+    <th>User Name : </th>
+      <td>{{currentUser[0]["username"]}}</td>
+      <td rowspan="5" style="text-align: center;"><br>
+        <img src="../../assets/profile.png" height="200px" width="200px"/>
+      </td></tr>
+      <tr><th>First Name :</th>
+      <td>{{currentUser[0]["firstName"]}}</td></tr>
+      <tr><th>Last Name : </th>
+      <td>{{currentUser[0]["lastName"]}}</td></tr>
+      <tr><th>Email ID : </th>
+      <td>{{currentUser[0]["email"]}}</td></tr>
+      <tr> <td colspan="2">
+      <a class="btn btn-link" title="Issue" data-toggle="modal" href="#EditProfile" (click)="viewProfile()">Edit Profile</a>
+      </td>
+    </tr>
+</table>
+
+
+
+
+           <!-- Modal -->
+           <div class="modal" id="EditProfile">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Edit Profile</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form (ngSubmit)="editProfile(RegForm)" #RegForm="ngForm" >
+                <div class="modal-body">
+                
+                  <table class="table table-striped table-hover table-bordered" style="width:120%" border="0">
+                    <tr>
+                        <th>
+                            <input type="hidden" id="id" name="id" [(ngModel)]="model.id">
+                            <input type="hidden" id="username" name="username" [(ngModel)]="model.username">
+                            <input type="hidden" id="password" name="password" [(ngModel)]="model.password">
+                           <label for="title">First Name :</label>
+                        </th>
+                        <td><input type="text" class="form-control" id="name" name="firstName" required
+                              [(ngModel)]="model.firstName" #firstName="ngModel">
+                            <div *ngIf = "firstName.errors && (firstName.dirty || firstName.touched)" class="text-danger">
+                                <div [hidden]="!firstName.errors.required">
+                                    Firstname is required.
+                                </div>
+                              </div>
+                          </td>
+                        </tr>
+                          <tr><th>
+                             <label for="title">Last Name :</label>
+                          </th>
+                          <td><input type="text" class="form-control" id="name" name="lastName" required
+                                [(ngModel)]="model.lastName" #lastName="ngModel">
+                              <div *ngIf = "lastName.errors && (lastName.dirty || lastName.touched)" class="text-danger">
+                                  <div [hidden]="!lastName.errors.required">
+                                      LastName is required.
+                                  </div>
+                                </div>
+                            </td>
+                          </tr>
+                        <tr> <th>
+                               <label for="title">Email</label>
+                            </th>
+                            <td><input type="text" class="form-control" id="email" name="email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                  [(ngModel)]="model.email" #email="ngModel">
+                                  <div *ngIf = "email.errors && (email.dirty || email.touched) " class="text-danger">
+                                      <div [hidden]="!email.errors.required">
+                                          Email is required.
+                                      </div>
+                                      <div [hidden]="!email.errors.pattern">
+                                          Email not in correct format
+                                      </div>
+                                    </div>
+                              </td>
+                        </tr>
+                  </table>
+                 
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" [disabled]="!RegForm.form.valid" class="btn btn-primary" data-dismiss="modal" (click)="editProfile(RegForm)">Update</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </form>
+              </div>
+            </div>
+          </div>
+</div>
+

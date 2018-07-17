@@ -1,0 +1,312 @@
+<div class="container" >
+  
+  <table border="0">
+    <tr>
+       <td>
+          <div class="selectdiv" style="width: 300px;">
+              <h4> Filter by Category </h4>
+              <select required name="term" [(ngModel)]="term" class="form-control"> 
+                  <option *ngFor="let category of categories">{{ category }}</option>
+              </select>
+              </div>
+         </td> 
+         <td>
+           
+            <div> <h4> Add Book </h4>
+              <a class="btn btn-primary" title="AddBook" data-toggle="modal" href="#AddBook" (click)="resetAddBookForm()">Add Book</a>
+            </div>
+         </td>
+    </tr>
+  </table>
+    
+               <div style="width: 1100px;">
+                <h3>List of Books Available</h3>
+                  <table class="table table-striped table-hover table-bordered" style="width:100%">
+                      <thead class="thead-dark">
+                          <tr>
+                            <th>ISBN</th>
+                            <th>Author</th>
+                            <th>Book Name</th>
+                            <th style="text-align: center;">Total Copies</th>
+                            <!-- <th style="text-align: center;">Available Copies</th> -->
+                            <th style="text-align: center;">Category</th>
+                            <th colspan="3" style="text-align: center;">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let book of bookList | bookCategoryFilter: term">
+                            <tr>
+                              <td>{{book.ISBN}}</td>
+                              <td>{{book.Author}}</td>
+                              <td>{{book.Bookname}}</td>
+                              <td style="text-align: center;">{{book.TotalCopies}}</td>
+                              <!-- <td style="text-align: center;">{{book.NumberOfCopies}}</td> -->
+                              <td style="text-align: center;">{{book.category}}</td>
+                              <td>
+                              <a class="btn btn-link" title="EditBook" data-toggle="modal" href="#EditBook" (click)="viewBookForEdit(book)">Edit Book</a>
+                              </td>
+                              <td>
+                                <a class="btn btn-link" title="ViewBook" data-toggle="modal" href="#ViewBook" (click)="viewBook(book)">View Book</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-link" title="DeleteBook" data-toggle="modal" href="#DeleteBook" (click)="viewBook(book)">Delete Book</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <!-- Modal -->
+                    <div class="modal" id="DeleteBook">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Delete Book</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Do You Want to delete <strong>{{dispalybook.Bookname}} </strong>  Book ?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-primary" (click)="DeleteBook(dispalybook)" data-dismiss="modal">Delete Book</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                                 <!--ViewBook Modal -->
+                                 <div class="modal" id="ViewBook">
+                                  <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title">Book Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <table class="table table-striped table-hover table-bordered" style="width:120%" border="0">
+                                          <tr>
+                                            <th>ISBN</th>
+                                              <td>{{dispalybook.ISBN}}</td>
+                                              <td rowspan="6" style="text-align: center;"><br><br>
+                                                <img src={{dispalybook.imageurl}} height="250px" width="150px" style="display:block;"/>
+                                              </td></tr>
+                                              <tr><th>Author</th>
+                                              <td>{{dispalybook.Author}}</td></tr>
+                                              <tr><th>Bookname</th>
+                                              <td>{{dispalybook.Bookname}}</td></tr>
+                                              <tr><th>Description</th>
+                                              <td>{{dispalybook.description}}</td></tr>
+                                              <!-- <tr><th>Available Copies</th>
+                                              <td>{{dispalybook.NumberOfCopies}}</td> -->
+                                              <tr><th>Total Copies</th>
+                                                <td>{{dispalybook.TotalCopies}}</td></tr>
+                                                <tr><th>Category</th>
+                                                  <td>{{dispalybook.category}}</td></tr>
+                                        </table>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+          <!--EditBook Modal -->
+           <div class="modal" id="EditBook">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Edit Book Details</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form (ngSubmit)="editBook(RegForm)" #RegForm="ngForm" >
+                <div class="modal-body">
+                
+                  <table class="table table-striped table-hover table-bordered" style="width:120%" border="0">
+                    <tr>
+                      <th><label for="title">ISBN :</label></th>
+                      <td>{{model.ISBN}}</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input type="hidden" id="id" name="id" [(ngModel)]="model.id">
+                            <input type="hidden" id="ISBN" name="ISBN" [(ngModel)]="model.ISBN">
+                            <input type="hidden" id="NumberOfCopies" name="NumberOfCopies" [(ngModel)]="model.NumberOfCopies">
+                            <input type="hidden" id="imageurl" name="imageurl" [(ngModel)]="model.imageurl">
+                            <input type="hidden" id="category" name="category" [(ngModel)]="model.category">
+                           <label for="title">Book Name :</label>
+                        </th>
+                        <td><input type="text" class="form-control" id="Bookname" name="Bookname" required
+                              [(ngModel)]="model.Bookname" #Bookname="ngModel">
+                            <div *ngIf = "Bookname.errors && (Bookname.dirty || Bookname.touched)" class="text-danger">
+                                <div [hidden]="!Bookname.errors.required">
+                                  Bookname is required.
+                                </div>
+                              </div>
+                          </td>
+                        </tr>
+                          <tr><th>
+                             <label for="title">Author :</label>
+                          </th>
+                          <td><input type="text" class="form-control" id="Author" name="Author" required
+                                [(ngModel)]="model.Author" #Author="ngModel">
+                              <div *ngIf = "Author.errors && (Author.dirty || Author.touched)" class="text-danger">
+                                  <div [hidden]="!Author.errors.required">
+                                    Author is required.
+                                  </div>
+                                </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th><label for="title">Available Copies :</label></th>
+                            <td>{{model.NumberOfCopies}}</td>
+                          </tr>
+                        <tr> <th>
+                               <label for="title">Total Copies :</label>
+                            </th>
+                            <td><input type="text" class="form-control" id="TotalCopies" name="TotalCopies" required
+                                  [(ngModel)]="model.TotalCopies" #TotalCopies="ngModel">
+                                  <div *ngIf = "TotalCopies.errors && (TotalCopies.dirty || TotalCopies.touched) " class="text-danger">
+                                      <div [hidden]="!TotalCopies.errors.required">
+                                        Total Copies is required.
+                                      </div>
+                                    </div>
+                              </td>
+                        </tr>
+                        <tr> <th>
+                          <label for="title">Description :</label>
+                       </th>
+                       <td><textarea class="form-control" id="description" name="description" rows="5" required
+                             [(ngModel)]="model.description" #description="ngModel"></textarea>
+                             <div *ngIf = "description.errors && (description.dirty || description.touched) " class="text-danger">
+                                 <div [hidden]="!description.errors.required">
+                                  description is required.
+                                 </div>
+                               </div>
+                         </td>
+                   </tr>
+                  </table>
+                 
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" [disabled]="!RegForm.form.valid" class="btn btn-primary" data-dismiss="modal" (click)="editBook(RegForm)">Update</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </form>
+              </div>
+            </div>
+          </div>
+
+           <!--AddBook Modal -->
+           <div class="modal" id="AddBook">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Add Book Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form (ngSubmit)="AddBook(AddForm)" #AddForm="ngForm" >
+                      <div class="modal-body">
+                      
+                        <table class="table table-striped table-hover table-bordered" style="width:120%" border="0">
+                            <tr>
+                                <th>
+                                    <input type="hidden" id="id" name="id" [(ngModel)]="addbookmodel.id">
+                                   <label for="title">ISBN :</label>
+                                </th>
+                                <td><input type="text" class="form-control" id="ISBN" name="ISBN" required
+                                      [(ngModel)]="addbookmodel.ISBN" #ISBN="ngModel">
+                                    <div *ngIf = "ISBN.errors && (ISBN.dirty || ISBN.touched)" class="text-danger">
+                                        <div [hidden]="!ISBN.errors.required">
+                                            ISBN is required.
+                                        </div>
+                                      </div>
+                                  </td>
+                                </tr>
+                            <tr>
+                              <th>
+                                 <label for="title">Book Name :</label>
+                              </th>
+                              <td><input type="text" class="form-control" id="Bookname" name="Bookname" required
+                                    [(ngModel)]="addbookmodel.Bookname" #Bookname="ngModel">
+                                  <div *ngIf = "Bookname.errors && (Bookname.dirty || Bookname.touched)" class="text-danger">
+                                      <div [hidden]="!Bookname.errors.required">
+                                        Bookname is required.
+                                      </div>
+                                    </div>
+                                </td>
+                              </tr>
+                                <tr><th>
+                                   <label for="title">Author :</label>
+                                </th>
+                                <td><input type="text" class="form-control" id="Author" name="Author" required
+                                      [(ngModel)]="addbookmodel.Author" #Author="ngModel">
+                                    <div *ngIf = "Author.errors && (Author.dirty || Author.touched)" class="text-danger">
+                                        <div [hidden]="!Author.errors.required">
+                                          Author is required.
+                                        </div>
+                                      </div>
+                                  </td>
+                                </tr>
+                              <tr> <th>
+                                     <label for="title">Total Copies :</label>
+                                  </th>
+                                  <td><input type="text" class="form-control" id="TotalCopies" name="TotalCopies" required pattern="^[0-9]*$"
+                                        [(ngModel)]="addbookmodel.TotalCopies" #TotalCopies="ngModel">
+                                        <div *ngIf = "TotalCopies.errors && (TotalCopies.dirty || TotalCopies.touched) " class="text-danger">
+                                            <div [hidden]="!TotalCopies.errors.required">
+                                              Total Copies is required.
+                                            </div>
+                                            <div [hidden]="!TotalCopies.errors.pattern">
+                                              Only Number Allowed !!!
+                                          </div>
+                                          </div>
+                                    </td>
+                              </tr>
+                              <tr> <th>
+                                  <label for="title">Book Category :</label>
+                               </th>
+                               <td>
+                                  <select required name="category" id="category" [(ngModel)]="addbookmodel.category" class="form-control" #category="ngModel"> 
+                                      <option *ngFor="let category of addcategories">{{ category }}</option>
+                                  </select>
+                                  
+                                     <div *ngIf = "category.errors && (category.dirty || category.touched) " class="text-danger">
+                                         <div [hidden]="!category.errors.required">
+                                            Category is required.
+                                         </div>
+                                       </div>
+                                 </td>
+                           </tr>
+                              <tr> <th>
+                                <label for="title">Description :</label>
+                             </th>
+                             <td><textarea class="form-control" id="description" name="description" rows="3" required
+                                   [(ngModel)]="addbookmodel.description" #description="ngModel"></textarea>
+                                   <div *ngIf = "description.errors && (description.dirty || description.touched) " class="text-danger">
+                                       <div [hidden]="!description.errors.required">
+                                        description is required.
+                                       </div>
+                                     </div>
+                               </td>
+                         </tr>
+                        </table>
+                       
+                      </div>
+                      <div class="modal-footer">
+                          <button type="submit" [disabled]="!AddForm.form.valid" class="btn btn-primary" data-dismiss="modal" (click)="AddBook(AddForm)">ADD</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </form>
+                </div>
+              </div>
+            </div>
+                  </div>
+</div>

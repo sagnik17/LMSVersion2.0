@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+ 
+  <!--Show when No User/Admin is Logged in -->
+  <div *ngIf="showNav === false" class="collapse navbar-collapse" id="navbarColor01">
+      <b><a class="navbar-brand" routerLink="login">Any Time Library</a></b> 
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="login">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="about">About</a>
+      </li>
+    </ul>
+  </div>
+
+  <!--Show when User is Logged in -->
+  <div *ngIf="showNav" class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+          <b><a class="navbar-brand" routerLink="home">HI {{currentUser[0]["firstName"] | uppercase}}</a></b> 
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="bookissuesd">Books Issued</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="profile">Profile</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <a class="btn btn-secondary my-2 my-sm-0" href="/" role="button" (click)="logout()">Logout</a>
+    </form>
+  </div>
+ 
+
+  <!--Show when Admin is Logged in -->
+  <div *ngIf="showAdminNav" class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <b><a class="navbar-brand" routerLink="admin">HI {{currentUser[0]["firstName"] | uppercase}}</a></b> 
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="admin">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="adminview">View Books Issued</a>
+        </li>
+      </ul>
+      
+      <form class="form-inline my-2 my-lg-0">
+        <a class="btn btn-secondary my-2 my-sm-0" href="/" role="button" (click)="logout()">Logout</a>
+      </form>
+    </div>
+</nav>

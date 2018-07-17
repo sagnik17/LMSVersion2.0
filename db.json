@@ -1,0 +1,139 @@
+{
+  "users": [
+    {
+      "id": "25471c58-ce8b-31f6-61b6-020960aa26b4",
+      "username": "sagnik",
+      "password": "sagnik",
+      "firstName": "Sagnik",
+      "lastName": "Saha",
+      "email": "sagnik4@gmail.com"
+    },
+    {
+      "id": "58351680-39eb-71c0-9a8b-97fa6c9f4dea",
+      "firstName": "Admin",
+      "lastName": "Login",
+      "username": "admin123",
+      "password": "admin123",
+      "email": "admin@ats.com"
+    }
+  ],
+  "books": [
+    {
+      "id": "1324c4e3-5a8e-4705-bb13-a6b2f177001f",
+      "Bookname": "India: the road ahead",
+      "Author": "Mark Tully",
+      "ISBN": "1846041619",
+      "NumberOfCopies": 11,
+      "TotalCopies": 0,
+      "category": "Politics",
+      "description": "The sequel to No Full Stops in India, Mark Tully's most popular book so far.As former chief of bureau for the BBC in India, Mark Tully draws upon a lifetime's knowledge of this most diverse of countries to consider an emerging superpower at a pivotal moment in history.",
+      "imageurl": "../../assets/India the road ahead.jpg"
+    },
+    {
+      "id": "c34de92c-7ed5-41c8-a9b8-4890d4d17605",
+      "Bookname": "The Road Ahead",
+      "Author": "Bill Gates",
+      "ISBN": "0140260404",
+      "NumberOfCopies": 11,
+      "TotalCopies": 0,
+      "category": "Nonfiction",
+      "description": "The Road Ahead is a book written by Bill Gates, co-founder and then-CEO of the Microsoft software company, together with Microsoft executive Nathan Myhrvold and journalist Peter Rinearson.",
+      "imageurl": "../../assets/The Road Ahead.jpg"
+    },
+    {
+      "id": "699ada07-556e-4a07-8d9b-44bdeca423ce",
+      "ISBN": "0198093691",
+      "NumberOfCopies": 14,
+      "imageurl": "../../assets/DAA.jpg",
+      "category": "Technology",
+      "Bookname": "Design and Analysis of Algorithms",
+      "Author": "S. Sridhar",
+      "TotalCopies": "15",
+      "description": "Design and Analysis of Algorithms is designed to serve as a textbook for the undergraduate students.The book aims to empower students with in-depth knowledge of the fundamental concepts and the design, analysis, and implementation aspects of algorithms."
+    },
+    {
+      "id": "e87c8955-8193-4a8c-bc34-2254e2daf7a2",
+      "ISBN": "3642025374",
+      "NumberOfCopies": 5,
+      "imageurl": "../../assets/OptimizationAlgorithms.jpg",
+      "category": "Economics",
+      "Bookname": "Experimental Methods for the Analysis of Optimization Algorithms",
+      "Author": "Thomas Bartz-Beielstein,‎ Marco Chiarandini,‎ Luís Paquete,‎ Mike Preuss",
+      "TotalCopies": "5",
+      "description": "In operations research and computer science it is common practice to evaluate the performance of optimization algorithms on the basis of computational results, and the experimental approach should follow accepted principles that guarantee the reliability and reproducibility of results."
+    },
+    {
+      "id": "64386a7d-3a4e-4521-a913-30e072b3b20e",
+      "Bookname": "I Do What I Do",
+      "Author": "Rajan Raghuram G",
+      "ISBN": "9352770145",
+      "NumberOfCopies": 14,
+      "TotalCopies": 0,
+      "category": "Economics",
+      "description": "Its an amazing book looking at the perspective of a RBI Governor and challenges faced by him to keep the economy of large economy in bind. Also an insight into the demon of demonetisation and how it unfolded behind closed doors against the advise of the RBI Governor.",
+      "imageurl": "../../assets/I_Do_What_I_Do.jpg"
+    },
+    {
+      "id": "085bd996-879e-4fe0-9e67-96fe1be4f42a",
+      "Bookname": "Data Science and Big Data Analytics",
+      "Author": "EMC Education Services",
+      "ISBN": "8126556536",
+      "NumberOfCopies": 11,
+      "TotalCopies": 0,
+      "category": "Technology",
+      "description": "Data Science & Big Data Analytics educates readers about what Big Data is and how to extract value from it. The book covers methods and technologies required to analyze structured and unstructured datasets, as more individuals and organizations build out their capabilities to analyze Big Data and draw insights from it.",
+      "imageurl": "../../assets/Data Science and Big Data Analytics.jpg"
+    },
+    {
+      "id": "f1e1fc1c-5771-b60e-b329-0cea634fa608",
+      "ISBN": "1846041244",
+      "Bookname": "Man's Search for Meaning",
+      "Author": "Viktor E Frankl",
+      "TotalCopies": "8",
+      "category": "Nonfiction",
+      "description": "Translated into at least 24 languages and with over 12 million copies sold worldwide, Man's Search for Meaning is one of the seminal pieces of literature to emerge from the Second World War.",
+      "NumberOfCopies": "8",
+      "imageurl": "../../assets/Man Search for Meaning.jpg"
+    },
+    {
+      "id": "294f02ba-8d68-8149-4ada-d15dd8d98140",
+      "Bookname": "Political Violence in Ancient India",
+      "Author": "Upinder Singh",
+      "ISBN": "0674975278",
+      "NumberOfCopies": 20,
+      "TotalCopies": 0,
+      "category": "Politics",
+      "description": "Gandhi and Nehru helped create a myth of nonviolence in ancient India that obscures a troubled, complex heritage: a long struggle to reconcile the ethics of nonviolence with the need to use violence to rule. Upinder Singh documents the tension between violence and nonviolence in ancient Indian political thought and practice, 600 BCE to 600 CE.",
+      "imageurl": "../../assets/bookcover.jpg"
+    }
+  ],
+  "booksIssued": [
+    {
+      "id": "b20b1736-b9b9-296f-b9e8-3fecb3283764",
+      "bookid": "1324c4e3-5a8e-4705-bb13-a6b2f177001f",
+      "userid": "25471c58-ce8b-31f6-61b6-020960aa26b4",
+      "DateOfIssue": 1531848195946,
+      "DateOfReturn": 1532712195946,
+      "isReturn": true,
+      "isIssue": false
+    },
+    {
+      "id": "91d8e45b-c91e-16dc-e56b-e8fa39332b99",
+      "bookid": "699ada07-556e-4a07-8d9b-44bdeca423ce",
+      "userid": "25471c58-ce8b-31f6-61b6-020960aa26b4",
+      "DateOfIssue": 1531848236379,
+      "DateOfReturn": 1532712236378,
+      "isReturn": true,
+      "isIssue": false
+    },
+    {
+      "id": "3c263e84-a915-5fff-e8b1-c4a285a98318",
+      "bookid": "64386a7d-3a4e-4521-a913-30e072b3b20e",
+      "userid": "25471c58-ce8b-31f6-61b6-020960aa26b4",
+      "DateOfIssue": 1531848246402,
+      "DateOfReturn": 1532712246402,
+      "isReturn": true,
+      "isIssue": false
+    }
+  ]
+}
